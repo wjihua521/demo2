@@ -22,13 +22,8 @@ import java.nio.file.Path;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/test")
-public class TestController {
-
-    @RequestMapping("/user")
-    public String test(@RequestBody @Valid TestDto dto){
-        return "你好，"+dto.getName();
-    }
+@RequestMapping("/qrcode")
+public class QRcodeController {
 
     @RequestMapping("/qrcode")
     public void qrCode(HttpServletResponse response,HttpServletRequest request){
