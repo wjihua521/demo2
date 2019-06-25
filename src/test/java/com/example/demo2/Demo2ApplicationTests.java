@@ -1,6 +1,8 @@
 package com.example.demo2;
 
 import com.example.demo2.dto.TestDto;
+import com.example.demo2.dto.UserInfoDto;
+import com.example.demo2.service.MyAnnotationTestService;
 import com.example.demo2.service.TestService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,19 +16,26 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class Demo2ApplicationTests {
 	@Autowired
-	private TestService testService;
+	private MyAnnotationTestService testService;
 
 	@Test
 	public void contextLoads() {
-		TestDto dto = MyApplicationContextUtil.getBeanByType(TestDto.class);
-		dto.setAddress("3");
-		dto.setName("北京");
-		testService.test(dto);
+		testService.test1();
+		UserInfoDto dto = new UserInfoDto();
+		dto.setOpenid(UUID.randomUUID().toString());
+		testService.test2(dto);
+		TestDto dto2 = new TestDto();
+		dto2.setName("帝释天");
+		testService.test3(dto2);
+
+		dto.setOpenid(UUID.randomUUID().toString());
+		testService.test4(dto,"test4");
 	}
 
 }

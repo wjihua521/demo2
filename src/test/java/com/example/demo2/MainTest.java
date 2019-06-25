@@ -4,61 +4,33 @@ import com.example.demo2.processor.CustomerMappingJackson2HttpMessageConverter;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MainTest {
     public static void main(String[] args) {
-        RestTemplate restTemplate = new RestTemplate();
-        CustomerMappingJackson2HttpMessageConverter converter = new CustomerMappingJackson2HttpMessageConverter();
-
-        List<MediaType> list = converter.getSupportedMediaTypes();
-
-        final Map<String,NameCode> map = new ConcurrentHashMap<>();
-        NameCode nc = new NameCode();
-        map.put("1",nc);
-        map.put("2",new NameCode());
-        map.put("3",new NameCode());
-
-        nc = null;
-        System.out.println(Integer.valueOf("1.6"));
-        /*for(int i=200;i<800;i++){
-            final int ti = i;
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    map.remove(""+ti);
-                    System.out.println("----remove--"+ti);
-                }
-            }).start();
-        }
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                StringBuilder sb = new StringBuilder();
-
-                for(Map.Entry entry : map.entrySet()){
-                    sb.append(entry.getKey()).append(":").append(entry.getValue()).append("\r\n");
-                };
-                File file = new File("C:\\myfiles\\usr\\temp\\context.txt");
-                try {
-                    FileWriter fileWriter = new FileWriter(file);
-                    fileWriter.write(sb.toString());
-                    fileWriter.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        String str = "上帝就发打算离开附件设计开发四道口附近上空时间分厘卡时间是解放螺丝钉解放可是大家少了几分联赛开局方式司法解释的快捷方式是解放拉萨解放是解放螺丝钉解放数据的疯狂的事的健康k";
+        System.out.println("----字符串size：" + str.getBytes().length);
+        List list = new ArrayList();
+        try{
+            for(int i=0;i<4200;i++){
+                ByteBuffer byteBuffer = ByteBuffer.allocateDirect(255);
+                byteBuffer.put(str.getBytes());
+                list.add(byteBuffer);
             }
-        }).start();*/
-        //System.out.println(Integer.valueOf("1.6"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        System.out.println("----finish");
     }
 
-    static int f(int n){
-        if(n==0 ||n==1){
+    static int f(int n) {
+        if (n == 0 || n == 1) {
             return 1;
         }
-        return f(n-1)+f(n-2);
+        return f(n - 1) + f(n - 2);
     }
 }
